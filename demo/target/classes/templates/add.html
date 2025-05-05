@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="page2style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="header">
+        Aggiungi una spesa
+    </div>
+    <div class="sub-header">
+        <div class="home-button" onclick="window.location.href='/'">Home</div>
+        <div class="add-spesa-button" onclick="window.location.href='/add'">Aggiungi spesa</div>
+    </div>
+    <form class="add-form" th:action="@{/aggiungi}" method="post" th:object="${spesa}">
+        <div class="form-group">
+            <label for="descrizione" class="form-label">Descrizione:</label>
+            <input type="text" id="descrizione" th:field="*{descrizione}" class="form-input" />
+        </div>
+        <div class="form-group">
+            <label for="importo" class="form-label">Importo:</label>
+            <input type="number" id="importo" step="1.0" th:field="*{importo}" class="form-input" /> eur
+        </div>
+        <div class="form-group">
+            <label for="data" class="form-label">Data:</label>
+            <input type="date" id="data" th:field="*{data}" class="form-input" />
+        </div>
+        <div class="form-group">
+            <label for="categoria" class="form-label">Categoria:</label>
+            <select id="categoria" class="form-select" th:field="*{categoria}" required>
+                <option th:if="${spesa.categoria} == null" value="" disabled>-- Seleziona categoria --</option>
+                <option th:each="c : ${categorie}" th:value="${c}" th:text="${c}"></option>
+            </select>
+        </div>
+        <button type="submit" class="submit-button">Aggiungi</button>
+    </form>
+</body>
+</html>

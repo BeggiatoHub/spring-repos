@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="home.css">
+    <title>Gestione Spese</title>
+</head>
+<body>
+    <div class="header">
+        Le mie spese
+    </div>
+    <div class="sub-header">
+        <div class="home-button" onclick="window.location.href='/'">Home</div>
+        <div class="add-spesa-button" onclick="window.location.href='/add'">Aggiungi spesa</div>
+        <div>
+            <form method="get" class="filter-form" action="/">
+                <select name="categoria" class="form-select">
+                    <option value="">Tutte le categorie</option>
+                    <option th:each="c : ${categorie}"
+                            th:value="${c}" th:text="${c}"
+                            th:selected="${c} == ${param.categoria}">
+                    </option>
+                </select>
+                <button class="filter-button" type="submit">Filtra</button>
+            </form>
+        </div>
+    </div>
+        <ul>
+            <div th:if="${spese.size() > 0}">
+                <div class="spesa-thing">Descrizione - Importo - Data - Categoria</div>
+                <li th:each="s : ${spese}">
+                    <div class="spesa-wrapper">
+                        <div class="spesa-items">
+                            <div class="spesa-thing" th:text="${s.descrizione}"></div> 
+                            <span class="spesa-thing">-</span>
+                            <div class="spesa-thing" th:text="${s.importo}"></div>
+                            <span class="spesa-thing">-</span>
+                            <div class="spesa-thing" th:text="${s.data}"></div>
+                            <span class="spesa-thing">-</span>
+                            <div class="spesa-thing" th:text="${s.categoria}"></div>
+                        </div>
+                        <div class="spesa-buttons">
+                            <a class="modify-button" th:href="@{'/modifica/' + ${s.id}}">Modifica</a>
+                            <a class="delete-button" th:href="@{'/elimina/' + ${s.id}}" onclick="return confirm('Sei sicuro di voler eliminare questa spesa?')">Elimina</a>
+                        </div> 
+                    </div>
+                </li>
+            </div>
+            <div th:if="${spese.size() == 0}">
+                <div class="placeholder">Ancora nessuna spesa, inizia a spendere!</div>
+            </div>
+        </ul>
+</body>
+</html>

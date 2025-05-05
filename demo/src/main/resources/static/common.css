@@ -1,0 +1,43 @@
+body{
+    background-color: #D8D8F6;
+    font-family: Arial;
+    margin: 0;
+    padding: 0;
+}
+.header, .sub-header{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    color: white;
+}
+
+.header{
+    background-color: #2C2C34;
+    justify-content: center;
+    font-size: 18px;
+    padding: 20px 0px 20px 0px;
+}
+
+.sub-header{
+    background-color: #494850;
+    justify-content: start;
+    text-decoration: none;
+    padding: 5px;
+}
+
+.home-button, .add-spesa-button {
+    text-decoration: none;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    transition: 0.2s;
+}
+
+.home-button:hover, .add-spesa-button:hover{
+    background-color: #676572;
+}
+
+.add-spesa-button{
+    margin-left: 10px;
+}
